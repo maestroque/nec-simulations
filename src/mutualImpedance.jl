@@ -3,8 +3,8 @@ using Plots
 f = 100e6
 λ = 3e8 / f
 
-d = λ / 2
-k = 0.05:0.05:6
+d = λ 
+k = 0.05:0.05:3
 
 z_s = 73.1 + 42.5 * im
 Z_m = []
@@ -35,13 +35,8 @@ for i in k
     I_1 = I_1r + I_1i * im
     I_2 = I_2r + I_2i * im
 
-    # println(I_1)
-    # println(I_2)
-
     z_m = - I_2 / I_1 * z_s
-    push!(Z_m, z_m)
-    # println(z_m)
-    
+    push!(Z_m, z_m)    
 end
 
 println(Z_m)
