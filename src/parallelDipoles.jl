@@ -10,7 +10,10 @@ z_s = 73.1 + 42.5 * im
 Z_m = []
 
 for i in k
-    rm("out/parallelDipoles.out")
+
+    if isfile("out/parallelDipoles.out")
+        rm("out/parallelDipoles.out")        
+    end
 
     file = open("nec/parallelDipoles.nec", "w")
     write(file, "CM Dipole Antenna\n")

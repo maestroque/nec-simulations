@@ -4,17 +4,18 @@ f = 100e6
 λ = 3e8 / f
 
 d = λ 
-k1 = 0.05:0.05:1
+k1 = 0.05:0.05:2
 k2 = 0.05:0.05:1
 
 z_s = 73.1 + 42.5 * im
 Z_m = []
 
-
 for horizontalDistance in k1 * λ
     zHor = []
     for verticalDistance in k2 * λ
-        rm("out/inEchellonDipoles.out")
+        if isfile("out/inEchellonDipoles.out")
+            rm("out/inEchellonDipoles.out")        
+        end
 
         file = open("nec/inEchellonDipoles.nec", "w")
         write(file, "CM Dipole Antenna\n")
@@ -45,7 +46,14 @@ for horizontalDistance in k1 * λ
     push!(Z_m, zHor)
 end
 
-println(Z_m)
+println(real(hcat(Z_m...)))
+println(size(real.(hcat(Z_m...))))
+println(size(k1 * λ))
+println(size(k2 * λ))
 
-plot(k1, real(Z_m[15]))
-plot!(k1, imag(Z_m[15]))
+# plot(k1, real(Z_m[15]))
+# plot!(k1, imag(Z_m[15]))
+
+p1 = contourf(k1 * λ, k2 * λ, real.(hcat(Z_m...)))
+p2 = contourf(k1 * λ, k2 * λ, imag.(hcat(Z_m...)))
+plot(p1, p2)

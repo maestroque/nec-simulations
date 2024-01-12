@@ -1,2 +1,5 @@
 .vscode/
+
+# NEC produced
 *.log
+out/
