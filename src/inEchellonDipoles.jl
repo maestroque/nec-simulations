@@ -1,4 +1,5 @@
 using Plots
+using LaTeXStrings
 
 f = 100e6
 λ = 3e8 / f
@@ -51,9 +52,6 @@ println(size(real.(hcat(Z_m...))))
 println(size(k1 * λ))
 println(size(k2 * λ))
 
-# plot(k1, real(Z_m[15]))
-# plot!(k1, imag(Z_m[15]))
-
-p1 = contourf(k1 * λ, k2 * λ, real.(hcat(Z_m...)))
-p2 = contourf(k1 * λ, k2 * λ, imag.(hcat(Z_m...)))
-plot(p1, p2)
+gr()
+contourf(k1 * λ, k2 * λ, real.(hcat(Z_m...)), title=L"R_m", xlabel="Horizontal Distance "*L"(d/λ)", ylabel="Vertical Distance "*L"(b/λ)")
+contourf(k1 * λ, k2 * λ, imag.(hcat(Z_m...)), title=L"X_m", xlabel="Horizontal Distance "*L"(d/λ)", ylabel="Vertical Distance "*L"(b/λ)")
