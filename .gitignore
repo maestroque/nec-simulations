@@ -3,3 +3,4 @@
 # NEC produced
 *.log
 out/
+Build.nec

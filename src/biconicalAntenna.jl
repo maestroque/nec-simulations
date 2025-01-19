@@ -25,6 +25,6 @@ function necBiconicalAntenna(r_w, l, θ, d)
 
 end
 
-λ = 0.25
+λ = 0.3
 
 necBiconicalAntenna(λ / 200, 0.5λ, π / 6, λ / 20)
